@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<StackPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.upeu.sysalmacenfx.control.LoginController">
+   <!-- Fondo principal -->
+   <ImageView fitWidth="400" fitHeight="600" preserveRatio="false">
+      <image>
+         <Image url="@../img/fondosys.jpg"/>
+      </image>
+      <effect>
+         <GaussianBlur radius="5.0"/>
+      </effect>
+   </ImageView>
+
+   <VBox alignment="CENTER" spacing="20" maxWidth="350">
+      <!-- Panel semi-transparente -->
+      <StackPane style="-fx-background-color: rgba(255, 255, 255, 0.15); -fx-background-radius: 20;">
+         <padding>
+            <Insets top="30" right="30" bottom="30" left="30"/>
+         </padding>
+
+         <VBox spacing="25" alignment="CENTER">
+            <!-- Logo y título -->
+            <ImageView fitHeight="120.0" fitWidth="120.0" preserveRatio="true">
+               <image>
+                  <Image url="@../img/tiendita.png"/>
+               </image>
+               <effect>
+                  <DropShadow color="WHITE" radius="20"/>
+               </effect>
+            </ImageView>
+
+            <Label text="KIOSKO YISAS" style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: white;">
+               <effect>
+                  <DropShadow/>
+               </effect>
+            </Label>
+
+            <!-- Campos de entrada -->
+            <VBox spacing="15">
+               <TextField fx:id="txtUsuario" promptText="Usuario" style="-fx-background-color: rgba(255,255,255,0.9); -fx-background-radius: 20; -fx-prompt-text-fill: #666; -fx-padding: 10 15;" />
+
+               <PasswordField fx:id="txtClave" promptText="Contraseña" style="-fx-background-color: rgba(255,255,255,0.9); -fx-background-radius: 20; -fx-prompt-text-fill: #666; -fx-padding: 10 15;" />
+
+               <Button fx:id="btnIngresar" onAction="#login" text="INGRESAR"
+                       style="-fx-background-color: #2196f3; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 10 15;">
+                  <effect>
+                     <DropShadow/>
+                  </effect>
+               </Button>
+            </VBox>
+         </VBox>
+      </StackPane>
+   </VBox>
+</StackPane>

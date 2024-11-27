@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="miContenedor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="536.0" prefWidth="814.0" style="-fx-background-color: #b03a2e;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.upeu.sysalmacenfx.control.ProductoController">
+    <children>
+        <VBox layoutX="14.0" layoutY="14.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+            <children>
+                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #f9e79f;">
+                    <children>
+                        <Label layoutX="14.0" layoutY="14.0" text="Gestionar Producto">
+                            <font>
+                                <Font name="System Bold" size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></AnchorPane>
+                <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                    <children>
+                        <AnchorPane maxWidth="1.7976931348623157E308" prefHeight="420.0" prefWidth="427.0" style="-fx-background-color: #f9e79f;">
+                            <children>
+                                <GridPane style="-fx-padding: 5px; -fx-background-color: #f9e79f;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="117.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.00000000000001" minWidth="10.0" prefWidth="83.00000000000001" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Label maxWidth="1.7976931348623157E308" style="-fx-background-color: center;" text="Formulario de Registro" GridPane.columnSpan="2147483647">
+                                            <font>
+                                                <Font name="System Bold" size="20.0" />
+                                            </font>
+                                        </Label>
+                                        <Label prefHeight="18.0" prefWidth="132.0" text="Nombre del cliente" GridPane.rowIndex="1">
+                                            <opaqueInsets>
+                                                <Insets />
+                                            </opaqueInsets></Label>
+                                        <Label text="Precio" GridPane.rowIndex="2" />
+                                        <Label text="Codigo de producto" GridPane.rowIndex="3" />
+                                        <Label text="Stock" GridPane.rowIndex="4" />
+                                        <Label text="Gategoria" GridPane.rowIndex="5" />
+                                        <Label text="Categoría" GridPane.rowIndex="6" />
+                                        <Label text="Unidad Medida" GridPane.rowIndex="7" />
+                                        <TextField fx:id="txtNombreProducto" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+                                            <opaqueInsets>
+                                                <Insets />
+                                            </opaqueInsets>
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </TextField>
+                                        <TextField fx:id="txtPUnit" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </TextField>
+                                        <TextField fx:id="txtPUnitOld" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </TextField>
+                                        <TextField fx:id="txtUtilidad" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="3">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </TextField>
+                                        <TextField fx:id="txtStock" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </TextField>
+                                        <Label text="Stock Old" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                        <TextField fx:id="txtStockOld" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </TextField>
+                                        <ComboBox fx:id="cbxCategoria" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="5">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </ComboBox>
+                                        <ComboBox fx:id="cbxProducto" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="6">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </ComboBox>
+                                        <ComboBox fx:id="cbxUnidMedida" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="7">
+                                            <GridPane.margin>
+                                                <Insets left="5.0" right="5.0" />
+                                            </GridPane.margin>
+                                        </ComboBox>
+                              <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#validarFormulario" text="Guardar" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cancelarAccion" text="Cancelar" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                                 <GridPane.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Label fx:id="lbnMsg" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="47.0" prefWidth="398.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="9" GridPane.rowSpan="2" />
+                                    </children>
+                                </GridPane>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane maxWidth="1.7976931348623157E308">
+                     <children>
+                        <TableView fx:id="tableView" layoutX="14.0" layoutY="-58.0" maxWidth="1.7976931348623157E308" prefHeight="548.0" prefWidth="370.0" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="-133.0" AnchorPane.topAnchor="-58.0" />
+                     </children></AnchorPane>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
