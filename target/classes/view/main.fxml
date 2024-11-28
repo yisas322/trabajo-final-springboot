@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="pe.edu.upeu.sysalmacenfx.control.VentaController"
+            prefHeight="600.0" prefWidth="800.0"
+            style="-fx-background-color: linear-gradient(to bottom right, #f8f9fa, #e9ecef);">
+
+    <VBox spacing="15" AnchorPane.topAnchor="20.0"
+          AnchorPane.leftAnchor="20.0"
+          AnchorPane.rightAnchor="20.0"
+          AnchorPane.bottomAnchor="20.0">
+
+        <!-- Panel Superior - Selección de Productos -->
+        <GridPane hgap="15" vgap="15"
+                  style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="Producto:" style="-fx-font-weight: bold;"
+                   GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <ComboBox fx:id="cboProductos"
+                      promptText="Seleccione un producto"
+                      prefWidth="300.0"
+                      style="-fx-background-radius: 5;"
+                      GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Precio:" style="-fx-font-weight: bold;"
+                   GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="txtPrecio"
+                       editable="false"
+                       style="-fx-background-radius: 5; -fx-background-color: #f8f9fa;"
+                       prefWidth="150.0"
+                       GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="Cantidad:" style="-fx-font-weight: bold;"
+                   GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+            <Spinner fx:id="spnCantidad"
+                     prefWidth="120.0"
+                     style="-fx-background-radius: 5;"
+                     GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+            <Label text="Importe:" style="-fx-font-weight: bold;"
+                   GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+            <TextField fx:id="txtImporte"
+                       editable="false"
+                       style="-fx-background-radius: 5; -fx-background-color: #f8f9fa;"
+                       prefWidth="150.0"
+                       GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+            <Button fx:id="btnAgregar"
+                    text="Agregar al Carrito"
+                    onAction="#handleAgregarProducto"
+                    prefWidth="150.0"
+                    style="-fx-background-color: #007bff; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold; -fx-cursor: hand;"
+                    GridPane.columnIndex="4" GridPane.rowIndex="0"/>
+        </GridPane>
+
+        <!-- Tabla de Carrito -->
+        <TableView fx:id="tblCarrito" VBox.vgrow="ALWAYS"
+                   style="-fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+            <columns>
+                <TableColumn fx:id="colProducto"
+                             text="Producto"
+                             prefWidth="300"/>
+                <TableColumn fx:id="colCantidad"
+                             text="Cantidad"
+                             prefWidth="100"/>
+                <TableColumn fx:id="colPrecio"
+                             text="Precio Unit."
+                             prefWidth="150"/>
+                <TableColumn fx:id="colSubtotal"
+                             text="Subtotal"
+                             prefWidth="150"/>
+            </columns>
+            <placeholder>
+                <Label text="No hay productos en el carrito"
+                       style="-fx-text-fill: #6c757d;"/>
+            </placeholder>
+            <style>
+                -fx-background-radius: 10;
+                -fx-border-radius: 10;
+                -fx-border-color: #dee2e6;
+                -fx-border-width: 1;
+            </style>
+        </TableView>
+
+        <!-- Panel Inferior - Totales y Botones -->
+        <HBox spacing="15" alignment="CENTER_RIGHT"
+              style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+            <padding>
+                <Insets top="15" right="20" bottom="15" left="20"/>
+            </padding>
+
+            <Button fx:id="btnQuitar"
+                    text="Quitar Producto"
+                    onAction="#handleQuitarProducto"
+                    prefWidth="150.0"
+                    style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold; -fx-cursor: hand;"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Label text="Total:" style="-fx-font-weight: bold; -fx-font-size: 16px;"/>
+            <Label fx:id="lblTotal"
+                   text="S/. 0.00">
+                <font>
+                    <Font name="System Bold" size="24"/>
+                </font>
+            </Label>
+
+            <Button fx:id="btnFinalizar"
+                    text="Finalizar Venta"
+                    onAction="#handleFinalizarVenta"
+                    prefWidth="150.0"
+                    style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold; -fx-cursor: hand;"/>
+        </HBox>
+    </VBox>
+</AnchorPane>
