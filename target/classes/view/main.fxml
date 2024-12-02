@@ -106,13 +106,17 @@
 
             <Region HBox.hgrow="ALWAYS"/>
 
-            <Label text="Total:" style="-fx-font-weight: bold; -fx-font-size: 16px;"/>
-            <Label fx:id="lblTotal"
-                   text="S/. 0.00">
-                <font>
-                    <Font name="System Bold" size="24"/>
-                </font>
-            </Label>
+            <VBox spacing="5" alignment="CENTER_RIGHT">
+                <Label fx:id="lblSubtotal"
+                       text="Subtotal: S/. 0.00"
+                       style="-fx-font-size: 14px;"/>
+                <Label fx:id="lblIgv"
+                       text="IGV (18%): S/. 0.00"
+                       style="-fx-font-size: 14px;"/>
+                <Label fx:id="lblTotal"
+                       text="Total: S/. 0.00"
+                       style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            </VBox>
 
             <Button fx:id="btnFinalizar"
                     text="Finalizar Venta"

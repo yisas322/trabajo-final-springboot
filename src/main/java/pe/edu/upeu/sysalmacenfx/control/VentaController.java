@@ -23,6 +23,7 @@ import pe.edu.upeu.sysalmacenfx.servicio.ProductoSService;
 import pe.edu.upeu.sysalmacenfx.servicio.VentaService;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -67,6 +68,14 @@ public class VentaController implements Initializable {
 
     @FXML
     private TableColumn<DetalleVentaR, BigDecimal> colSubtotal;
+
+    @FXML
+    private Label lblSubtotal;
+
+    @FXML
+    private Label lblIgv;
+
+    private static final BigDecimal IGV_RATE = new BigDecimal("0.18");
 
     @FXML
     private Label lblTotal;
@@ -362,7 +371,13 @@ public class VentaController implements Initializable {
     }
 
     private void actualizarTotal() {
-        lblTotal.setText(String.format("Total: S/. %.2f", carritoService.getTotal()));
+        BigDecimal subtotal = carritoService.getTotal();
+        BigDecimal igv = subtotal.multiply(IGV_RATE).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal total = subtotal.add(igv);
+
+        lblSubtotal.setText(String.format("Subtotal: S/. %.2f", subtotal));
+        lblIgv.setText(String.format("IGV (18%%): S/. %.2f", igv));
+        lblTotal.setText(String.format("Total: S/. %.2f", total));
     }
 
     private void mostrarError(String titulo, String mensaje) {

@@ -22,6 +22,8 @@ public class BoletaController implements Initializable {
 
     @FXML private Label lblNumeroVenta;
     @FXML private Label lblFecha;
+    @FXML private Label lblSubtotal;  // Nuevo
+    @FXML private Label lblIgv;       // Nuevo
     @FXML private Label lblTotal;
     @FXML private TableView<DetalleVentaR> tblDetalles;
     @FXML private TableColumn<DetalleVentaR, String> colProducto;
@@ -73,6 +75,11 @@ public class BoletaController implements Initializable {
         lblFecha.setText(venta.getFecha().format(
                 DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
         ));
+
+
+        // Mostrar subtotal, IGV y total
+        lblSubtotal.setText(String.format("S/ %.2f", venta.getSubtotal()));
+        lblIgv.setText(String.format("S/ %.2f", venta.getIgv()));
         lblTotal.setText(String.format("S/ %.2f", venta.getTotal()));
 
         if (venta.getDetalles() != null && !venta.getDetalles().isEmpty()) {

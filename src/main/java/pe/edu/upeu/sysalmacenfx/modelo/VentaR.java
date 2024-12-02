@@ -22,6 +22,12 @@ public class VentaR {
     @Column(nullable = false)
     private BigDecimal total;
 
+    @Column(nullable = false)
+    private BigDecimal subtotal;  // Nuevo campo
+
+    @Column(nullable = false)
+    private BigDecimal igv;      // Nuevo campo
+
     @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<DetalleVentaR> detalles = new ArrayList<>();
 
@@ -56,5 +62,21 @@ public class VentaR {
             // Asegurar que cada detalle tenga referencia a esta venta
             this.detalles.forEach(detalle -> detalle.setVenta(this));
         }
+    }
+
+    public BigDecimal getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(BigDecimal subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public BigDecimal getIgv() {
+        return igv;
+    }
+
+    public void setIgv(BigDecimal igv) {
+        this.igv = igv;
     }
 }

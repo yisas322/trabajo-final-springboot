@@ -7,12 +7,16 @@ import pe.edu.upeu.sysalmacenfx.modelo.DetalleVentaR;
 import pe.edu.upeu.sysalmacenfx.modelo.VentaR;
 import pe.edu.upeu.sysalmacenfx.repositorio.VentaRepository;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class VentaService {
+    private static final BigDecimal IGV_RATE = new BigDecimal("0.18"); // 18% IGV
+
     @Autowired
     private VentaRepository ventaRepository;
 
@@ -31,8 +35,20 @@ public class VentaService {
 
         // Crear nueva venta
         VentaR venta = new VentaR();
+
         venta.setFecha(LocalDateTime.now());
-        venta.setTotal(carritoService.getTotal());
+
+        // Calcular subtotal
+        BigDecimal subtotal = carritoService.getTotal();
+        venta.setSubtotal(subtotal);
+
+        // Calcular IGV (18% del subtotal)
+        BigDecimal igv = subtotal.multiply(IGV_RATE).setScale(2, RoundingMode.HALF_UP);
+        venta.setIgv(igv);
+
+        // Calcular total (subtotal + IGV)
+        BigDecimal total = subtotal.add(igv);
+        venta.setTotal(total);
         venta.setDetalles(new ArrayList<>()); // Inicializar la lista de detalles
 
         // Asignar la venta a cada detalle y actualizar stock
