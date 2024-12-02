@@ -2,6 +2,7 @@ package pe.edu.upeu.sysalmacenfx.control;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,6 +15,7 @@ import javafx.util.StringConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Controller;
+import pe.edu.upeu.sysalmacenfx.componente.ComboBoxAutoComplete;
 import pe.edu.upeu.sysalmacenfx.modelo.DetalleVentaR;
 import pe.edu.upeu.sysalmacenfx.modelo.ProductoR;
 import pe.edu.upeu.sysalmacenfx.modelo.VentaR;
@@ -25,6 +27,7 @@ import pe.edu.upeu.sysalmacenfx.servicio.VentaService;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 @Controller
@@ -94,6 +97,7 @@ public class VentaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        cargarProductos();
         // Configurar el ComboBox para mostrar solo el nombre del producto
         cboProductos.setConverter(new StringConverter<ProductoR>() {
             @Override
@@ -108,7 +112,30 @@ public class VentaController implements Initializable {
         });
 
         // Listener para actualizar precio cuando cambia el producto seleccionado
-        cboProductos.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+
+        cboProductos.setConverter(new StringConverter<ProductoR>() {
+            @Override
+            public String toString(ProductoR producto) {
+                return producto != null ? producto.getNombre() : "";
+            }
+
+            @Override
+            public ProductoR fromString(String string) {
+                if (string == null || string.isEmpty()) {
+                    return null;
+                }
+                // Buscar producto por nombre
+                return cboProductos.getItems().stream()
+                        .filter(p -> p.getNombre().equalsIgnoreCase(string))
+                        .findFirst()
+                        .orElse(null);
+            }
+        });
+
+        ComboBoxAutoComplete<ProductoR> autoComplete = new ComboBoxAutoComplete<>(cboProductos);
+
+        // Listener para actualizar precio cuando cambia el producto seleccionado
+        cboProductos.valueProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 txtPrecio.setText(String.format("S/ %.2f", newVal.getPrecio()));
                 // Ajustar spinner según el stock disponible
@@ -128,7 +155,6 @@ public class VentaController implements Initializable {
         // Configurar el spinner de cantidad inicial
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1);
         spnCantidad.setValueFactory(valueFactory);
-        // Permitir edición directa del spinner
         spnCantidad.setEditable(true);
 
         // Validar entrada manual del spinner
@@ -199,7 +225,7 @@ public class VentaController implements Initializable {
         });
 
         // Cargar productos iniciales
-        cargarProductos();
+        // cargarProductos();
 
         // Inicializar campos
         txtPrecio.setEditable(false);
@@ -358,9 +384,20 @@ public class VentaController implements Initializable {
     }
 
     private void cargarProductos() {
-        cboProductos.setItems(
-                FXCollections.observableArrayList(productoService.obtenerProductosDisponibles())
-        );
+        try {
+            // Obtener productos y ordenarlos
+            List<ProductoR> productos = productoService.obtenerProductosDisponibles();
+            productos.sort((p1, p2) -> p1.getNombre().compareToIgnoreCase(p2.getNombre()));
+
+            // Actualizar el ComboBox
+            cboProductos.setItems(FXCollections.observableArrayList(productos));
+
+            // Limpiar selección actual
+            cboProductos.getSelectionModel().clearSelection();
+
+        } catch (Exception e) {
+            mostrarError("Error", "Error al cargar los productos: " + e.getMessage());
+        }
     }
 
     private void actualizarTablaCarrito() {
